@@ -5,6 +5,6 @@ ENV STATIC_PATH /var/www/app/static
 COPY ./requirements.txt /var/www/requirements.txt
 COPY . /my_app/
 WORKDIR /my_app
-RUN apt update
-RUN apt install libpq-dev python-dev
+RUN apt-get -y update
+RUN apt-get install -y libpq-dev python-dev
 RUN pip install -r /var/www/requirements.txt
