@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template
+from flask_restful import Resource, Api
 import psycopg2
 import os
 
@@ -34,3 +35,12 @@ def add():
 @app.route('/template')
 def template():
     return render_template('home.html')
+
+
+api = Api(app)
+
+class HelloWorld(Resource):
+    def get(self):
+        return {'hello': 'world'}
+
+api.add_resource(HelloWorld, '/v1/hello/')
