@@ -6,5 +6,5 @@ COPY ./requirements.txt /var/www/requirements.txt
 COPY . /my_app/
 WORKDIR /my_app
 RUN apk update
-RUN apk install libpq-dev python-dev
+RUN apk add libpq-dev python-dev
 RUN pip install -r /var/www/requirements.txt
