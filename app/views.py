@@ -1,5 +1,5 @@
-from app import app
-from flask import render_template
+from app import app, api
+from flask import render_template, request
 from flask_restful import Resource, Api
 import psycopg2
 import os
@@ -37,10 +37,11 @@ def template():
     return render_template('home.html')
 
 
-api = Api(app)
-
+@api.resource('/v1/hello')
 class HelloWorld(Resource):
     def get(self):
+        print(request.authorization)
+        # print(dict(request.headers))
+        # print(request.form)
         return {'hello': 'world'}
 
-api.add_resource(HelloWorld, '/v1/hello/')
