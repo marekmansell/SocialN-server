@@ -1,5 +1,12 @@
 # SocialN-server
 
+## ToDo
+* [ ] Write a comprehensive README
+* [ ] Update API documentation
+* [ ] Move API documentation to `mtaa.marekmansell.sk/api/docs/v1`
+* [ ] Add authentication decorator to all API resources  
+      https://www.geeksforgeeks.org/decorators-in-python/
+
 ## Development
 1. Prepare environment
 ```
