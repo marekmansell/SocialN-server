@@ -1,6 +1,8 @@
 # SocialN-server
 
 ## ToDo
+* [ ] Create PostgreSQL tables, add create scripts do /postgresql directory
+* [ ] Add users via web browser (`mtaa.marekmansell.sk/admin/add`)
 * [ ] Write a comprehensive README
 * [ ] Update API documentation
 * [ ] Move API documentation to `mtaa.marekmansell.sk/api/docs/v1`
@@ -8,7 +10,7 @@
       https://www.geeksforgeeks.org/decorators-in-python/
 
 ## Development
-1. Prepare environment
+1. Prepare environment (developed on **Python3.6**)
 ```
 python3 -m venv venv
 source venv/bin/activate
