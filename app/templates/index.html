@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Welcome home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container mt-5">
+    <h2>Users</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            {% for column_name in users_row_names%}
+            <th scope="col">{{ column_name[0] }}</th>
+            {% endfor %}
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in users_rows %}
+        <tr>
+            {% for cell_value in row %}
+            <td>{{ cell_value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Posts</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            {% for column_name in posts_row_names%}
+            <th scope="col">{{ column_name[0] }}</th>
+            {% endfor %}
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in posts_rows %}
+        <tr>
+            {% for cell_value in row %}
+            <td>{{ cell_value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
