@@ -137,6 +137,31 @@ def init_db():
     return "OK"
 
 
+@app.route('/init/test/')
+def test_init():
+    db = get_db()
+
+    try:
+        with db.cursor() as cursor:
+            schema_file_path = os.path.join("app", "postgresql", "schema.sql")
+
+            with open(schema_file_path, "r") as file:
+                cursor.execute(file.read())
+                db.commit()
+
+            cursor.execute("INSERT INTO users (username, formatted_name, password, mail, date_of_birth) "
+                           "VALUES ('exampleUser', 'Mr. Example', 'Nbu123sr', 'example@example.com', '2020-03-02')")
+
+            cursor.execute("INSERT INTO users (username, formatted_name, password, mail, date_of_birth) "
+                           "VALUES ('superUser', 'Someone naughty', 'naughty', 'example@example.com', '2020-03-02')")
+            db.commit()
+
+
+    except Exception as e:
+        return f"Error: {e}"
+
+    return "OK"
+
 @api.resource('/v1/hello')
 class HelloWorld(Resource):
     def get(self):
@@ -370,6 +395,7 @@ class Post(Resource):
             response['hint'] = "The user you are signed in to does not have privileges to change other user's profiles"
             return response, 403
 
+
         allowed_keys = ['photo', 'content']
 
         sql_update_query = []
@@ -394,7 +420,7 @@ class Post(Resource):
 
         column_names = ['posts.id', "users.username", 'users.formatted_name', 'posts.publish_time', 'posts.photo',
                         'posts.content', 'posts.last_edit_time']
-        users_json = sql_query("posts", column_names, json=True, where=f"users.id = '{requested_post_id}'",
+        users_json = sql_query("posts", column_names, json=True, where=f"posts.id = '{requested_post_id}'",
                                join="JOIN users ON (users.id = posts.user_id)")
         response['posts'] = users_json
 
